@@ -1,0 +1,12 @@
+#!/bin/bash 
+clear 
+
+echo "testing examples/textOrSpeech"
+echo
+
+NAIFJSHOME="`npm root -g`/naifjs"
+
+naif shell \
+  --dir=$NAIFJSHOME/examples/textOrSpeech \
+  --start=textOrSpeech.askSentence
+

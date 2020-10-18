@@ -1,0 +1,53 @@
+#
+# dialog: unit2
+# links : unit1  
+#
+# states: askRestart, restart
+#
+#                .-------.
+#  askRestart -> |restart| 
+#                .-------.
+#                 ^     |          
+#                 |     v          
+#                 |    pattern 1 --> unit1.dogIntroduction
+#                 |    pattern 2 --> exit
+#                 +--- default
+#
+
+# 
+# 1
+# state: askRestart
+# type: prompt
+#
+
+  vuoi ricominciare? 
+
+    # next restart
+
+#
+# 2
+# state: restart 
+# type: pattern match 
+#
+
+# pattern 1 
+
+  si
+
+    # next unit1.dogIntroduction
+
+# pattern 2 
+ 
+  no
+
+      # exit 
+
+# default 
+  
+   blablabla
+  
+    Non ho capito.
+    vuoi ricominciare?
+
+      # next restart
+

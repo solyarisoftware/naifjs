@@ -1,0 +1,13 @@
+#!/bin/bash 
+clear 
+
+echo "testing examples/getUserNameTimeout"
+echo
+
+NAIFJSHOME="`npm root -g`/naifjs"
+
+
+naif shell \
+  --dir=$NAIFJSHOME/examples/getUserNameTimeout \
+  --start=getUserName.askName
+

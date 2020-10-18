@@ -1,0 +1,3 @@
+#!/bin/bash 
+echo && naif show --dir=examples/getUserName 
+

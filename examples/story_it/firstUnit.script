@@ -1,0 +1,106 @@
+#
+# dialog: unit1
+# links : unit2  
+# states: dogIntroduction, verifyName
+#
+#                     .-------------.
+#  dogIntroduction -> |presentations| 
+#                     .-------------.
+#                       |          ^
+#                       v          |
+#                +--- pattern 1    | 
+#                |    pattern 2 ---+
+#                |    pattern 3 ---+
+#                |    default   ---+
+#                |                 |  
+#                |    .----------. |
+#                +--> |verifyName| ^ 
+#                     .----------. |
+#                       |          |
+#                       v          |
+#                     pattern 1 -----> unit2.askRestart
+#                     pattern 2 ---+
+#                     default   ---+
+#
+
+#
+# 1
+# state: dogIntroduction
+# type: prompt
+#
+
+  Ciao, io sono Pippo e sono un cane. 
+  Tu come ti chiami?
+
+    # next presentations	
+
+#
+# 2
+# state: presentations 
+# type: pattern match 
+#
+
+# pattern 1 
+  
+  {nome}
+  ciao, io mi chiamo {nome}
+  
+    Davvero ti chiami {nome}?
+
+      # next verifyName
+
+# pattern 2 
+  
+  ciao
+  buongiorno
+                    
+    ciao a te! Piacere di conoscerti. Tu come ti chiami?
+
+# pattern 3 
+  
+  ciao, io sono un pulcino
+                    
+    piacere di conoscerti, sei un pulcino simpatico.
+    Tu come ti chiami? 
+
+# default 
+  
+  blablabla
+             
+    non ho capito. 
+    Tu come ti chiami? 
+
+
+#
+# 3
+# state: verifyName
+# type: pattern match 
+#
+
+      
+# pattern1
+
+  si
+
+    ciao {nome}, è un piacere conoscerti, sei molto simpatico 
+
+      # store {nome}
+      # next unit2.askRestart
+      
+# pattern2
+
+  no
+
+    Tu come ti chiami? 
+
+      # next presentations
+
+# default
+
+  blablabla
+
+    non ho capito. 
+    Tu come ti chiami? 
+
+      # next presentations
+

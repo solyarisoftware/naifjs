@@ -1,0 +1,13 @@
+#!/bin/bash 
+clear
+
+echo "testing examples/story_it"
+echo
+
+NAIFJSHOME="`npm root -g`/naifjs"
+
+# example 1: using naif script    
+naif shell \
+  --dir=$NAIFJSHOME/examples/story_it \
+  --start=firstUnit.dogIntroduction \
+  #--silent

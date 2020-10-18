@@ -1,0 +1,125 @@
+#
+# unit       : promemoria
+# invocation : promemoria | metti un promemoria
+# states     : askDescription, getDescription, getName, confirmAll 
+#
+#                     .--------------.
+#   askDescription -> |getDescription| <--.
+#      ^              .--------------.    |
+#      |                  |               |
+#      |                  v               |
+#      |         +--- pattern 1           |
+#      |         |    fallback (help) ----.
+#      |         |                    
+#      |       when?                 
+#      |         |                    
+#      |         |    .-------.     
+#      |         +--> |getTime| <--. 
+#      |              .-------.    |
+#      ^                |          |
+#      |                v          |
+#      |         +--- pattern 1    | 
+#      |         |    pattern 2 ---+
+#      |         |    fallback  ---+
+#      |         |
+#      |      confirm?   
+#      |         |                    
+#      |         |    .----------.     
+#      |         +--> |confirmAll| <--. 
+#      |              .----------.    |
+#      ^                |             |
+#      |                v             |
+#      |         +--- pattern 1       | 
+#      .----<----|--- pattern 2 ------+
+#                |    fallback  ------+
+#                v                    
+#             setTimer(description, time)
+
+
+#--------------------------------
+# 1 askDescription - output state
+#--------------------------------
+
+  Un promemoria per cosa?|Titolo del promemoria?
+
+#-------------------------------
+# 2 getDescription - input state 
+#-------------------------------
+
+# pattern 1 
+# get any text as description
+
+  blablabla
+
+    Quando devo ricordartelo?
+
+      # setvar {description}
+      # gostate getTime
+
+# fallback 
+# not a valid description.
+  
+  Non ho capito.
+  Qual'è il titolo del promemoria?|Cosa devo ricordarti?
+    
+
+#------------------------
+# 3 getTime - input state 
+#------------------------
+
+# pattern 1 
+#   get a valid time 
+#
+# examples:
+#   tra 8 minuti
+#   tra 7 secondi
+#   tra 2 min e 4 sec
+#   30 secondi
+#   2 minuti54 secondi
+#   10 minuti  e 34   secondi
+#
+# regex:
+#   ^(?:tra\s+)?(?:(?<minutes>\d+)\smin(ut[oi])?)?(?:\s+(e\s+)?)?(?:(?<seconds>\d+)\s+sec(ond[oi])?)?$
+#
+
+  tra {time} 
+      
+    {description} tra {time}. Confermi?
+
+      # setvar {time}
+      # gostate confirmAll
+
+# fallback 
+# not a valid time
+  
+  Non ho capito l'orario. 
+  Puoi indicare il tempo in minuti e secondi.
+  Tra quanto devo ricordarti il promemoria?
+    
+
+#---------------------------
+# 4 confirmAll - input state 
+#---------------------------
+
+# pattern 1
+
+  sì
+
+    Ok! Ti ricorderò il promemoria alle { absoluteTime(time) }.
+    
+      # fullfillment: setTimer(description, timeInMilliSeconds)
+      # end
+
+# pattern 2 
+ 
+  no
+
+    Ok, qual'è il titolo del promemoria?
+
+      # gostate getDescription 
+
+# fallback
+# Yes or No?
+#
+  Non ho capito. Sì o No?
+

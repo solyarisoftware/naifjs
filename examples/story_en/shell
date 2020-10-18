@@ -1,0 +1,15 @@
+#!/bin/bash 
+clear 
+
+echo "testing examples/story_en"
+echo
+
+NAIFJSHOME="`npm root -g`/naifjs"
+
+
+# example 1: dir as a relative path   
+naif shell \
+  --dir=$NAIFJSHOME/examples/story_en \
+  --start=firstUnit.dogIntroduction \
+  --silent
+

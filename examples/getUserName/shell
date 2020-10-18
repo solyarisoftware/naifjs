@@ -1,0 +1,12 @@
+#!/bin/bash 
+clear 
+
+echo "testing examples/getUserName"
+echo
+
+NAIFJSHOME="`npm root -g`/naifjs"
+
+naif shell \
+  --dir=$NAIFJSHOME/examples/getUserName \
+  --start=getUserName.askName
+
