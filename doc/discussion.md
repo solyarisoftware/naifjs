@@ -4,31 +4,53 @@
 
 Pros:
 
-- NaifJs is a software development kit dedicated to nodejs/javascript developers.
+- NaifJs is a low-level framework, dedicated to nodejs/javascript developers
+  (this is also in the cons section). 
+
+- The `naif` command line program supply a micro-framework of utilities 
+- enabling to develop quickly a dialog project.
+
 - Designer/coder must think, design and implement dialogues as "state machines",
-  explicitly thinking about internal states of a conversation. 
+  explicitly thinking about internal states of a conversation 
+  (this is also in the cons section). 
+
 - Very fast run-time (especially using NaifJs as embedded library)
+
 - Dialog manager is agnostic with respect to inbound/outbound message types.
   Even if in practice any inbound message (coming from an end-user) is turned to a text, 
   NaifJs can elaborate in theory any kind of inbound message data type 
   and the elaboration and the state transition logic, are all in charge to developer. 
+
   By example a state could take in input a speech (a voice audio file) 
   doing some sort of in-state elaboration without any transcript (ASR) pattern matching,
   but maybe the audio file could be processed just as a audio object processing. 
+
 - Well matches with stateful-based, rule-based applications as task-based workflows.
   E.g. Games, interactive stories, real-time/embedded (voice) assistants/cobots.
+
 - Good for slot-filling / complex slot validation, closed-domain / task completion dialogues.
-- No dependencies from external (cloud-based) "NLU" platforms (if regexp pattern matching is acceptable).
+
+- No dependencies from external (cloud-based) "NLU" platforms (if default, but optional regexp pattern matching is acceptable).
+
 - NaifJs command line utilities help to quickly test dialogues from command line and from a Telegram bot.
+
 - No machine-learning magics.
+  (this is also in the cons section). 
+
 
 Cons:
 
-- NaifJs is a low-level framework, dedicated to nodejs/javascript developers.
+- NaifJs is a low-level framework, dedicated to nodejs/javascript developers
+  (this is also in the pros section). 
+
 - Designer/coder must think, design and implement dialogues as "state machines",
-  explicitly thinking about internal states of a conversation. 
+  explicitly thinking about internal states of a conversation
+  (this is also in the pros section). 
+
 - Not a valid approach for FAQ-like question-answering or open-domain/chit-chat chatbots. 
+
 - No machine-learning magics.
+  (this is also in the pros section). 
 
 
 ## Food for thought
@@ -57,7 +79,6 @@ In general I was focused to realize a simple tool for developers allowing conver
 In 2016 I realized first prototype in Ruby language 
 (slides of my talk: [Naif — Ruby micro framework to build dumb chat machines](https://convcomp.it/naif-ruby-micro-framework-to-build-dumb-chat-machines-5c552a8c8f7e#.exp91nt72)). The reason of name *Naif* was because I was aware that the state machine approach do not pretend to be a magic "conversational AI" solution.
 
-
 As researcher at the Italian National Research Council Institute for Educational Technology (ITD-CNR), 
 in 2019 I ported the original prototype from Ruby to NodeJs, building NaifJs as it is now. 
 I used NaifJs as multi-user dialog manager engine of [CPIAbot](https://www.itd.cnr.it/Progetti_Rispo1.php?PROGETTO=1193), 
@@ -73,6 +94,8 @@ Related academic papers (introducing NaifJs usage):
   *CPIAbot: un chatbot nell’insegnamento dell’Italiano L2 per stranieri*. 
   Published in Didamatica 2019 acts, Best Paper Award in section: BYOD. Mobile e Mixed Learning (ISBN 978-88-98091-50-8) [PDF](https://www.aicanet.it/didamatica2019/atti-2019) p. 77-86.
 
+In September 2020 I decided to opensource my software with a MIT license, allowing people to use the framework and hopefully contribute to improve it.   
+
 
 ## Acknowledgments
 
@@ -81,6 +104,18 @@ Related academic papers (introducing NaifJs usage):
   rewriting [ChatScript wiki documentation](https://github.com/ChatScript/ChatScript/tree/master/WIKI) on the Github repo.
   ChatScript has been for me an huge source of inspiration.
 
+- Telegram is a beautiful platform to experiments multimodal bots, 
+  due to the excellent [Telegram Bot API](https://core.telegram.org/bots/api). 
+  I used Telegram also to develop CPIAbot before mentioned, 
+  and NaifJs supply an adapter to the platform and the rapid test tool: `naif telegram`. 
+  A special thanks goes to the author of nodejs library 
+  [node-telegram-bot-api](https://github.com/yagop/node-telegram-bot-api) I used also in this project.
+
+
+## Caveat
+
+Currently the project is just a proof of concept. Not ready for production.
+<br>The software made is just a prototype, in alpha stage. 
 
 ---
 

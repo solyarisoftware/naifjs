@@ -91,17 +91,18 @@ function checkArgs(args) {
 }
 
 
-function indexJs(projectName) {
-  return (
-    `// ${projectName} main program\n` +
-    '\n' +
-    'const naif = require(\'naifjs\')\n' +
-    '\n' +
-    'naif.up(...)\n' +
-    '\n' +
-    'naif.start(\'unitName.stateName\')\n' +
-    '\n'
-  )
+function genericAdapterTemplate() {
+  return fs.readFileSync(__dirname + '/templates/naif_init_generic.template.js')
+}  
+
+
+function commandLineAdapterTemplate() {
+  return fs.readFileSync(__dirname + '/templates/naif_init_cli.template.js')
+}  
+
+
+function telegramAdapterTemplate() {
+  return fs.readFileSync(__dirname + '/templates/naif_init_telegram.template.js')
 }  
 
 
@@ -164,8 +165,9 @@ function naifinit(args) {
   const projectDirectory = args.dir ? resolve(args.dir) : resolve(process.cwd())
   const projectName = basename(projectDirectory)
 
+  console.log()
   console.log( logo() )
-  console.log( `creating directory tree for project ${projectName}...` )
+  //console.log( `creating directory tree for project ${projectName}...` )
 
   const configSubDirectory = `${projectDirectory}/${configDirectoryName}`
   const dialogUnitsSubDirectory = `${projectDirectory}/${dialogunitsDirectoryName}`
@@ -181,8 +183,8 @@ function naifinit(args) {
   else {
     // create project directory and the root README file
     fs.mkdirSync(projectDirectory)
-    fs.writeFileSync(projectDirectory + '/index.js', indexJs(projectName) )
     fs.writeFileSync(projectDirectory + '/README.md', projectReadme(projectName) )
+    fs.writeFileSync(projectDirectory + '/index.js', genericAdapterTemplate() )
 
     // create subdirectories and README files
     fs.mkdirSync(configSubDirectory)
@@ -202,7 +204,8 @@ function naifinit(args) {
     fs.writeFileSync(logsSubDirectory + '/README.md', logsReadme() )
   }  
 
-  console.log( 'New NaifJs project:\n' + projectDirectory )
+  console.log( 'New NaifJs application has been initialized:\n' + projectDirectory )
+  console.log( `${projectDirectory}/index.js is a generic adapter template` )
   console.log()
   //console.log( projectReadme(projectName) )
 }

@@ -59,14 +59,14 @@
 
 ## [NaifJs API cheat sheet](API.md)
 
-## [`naif` command line interface tools](CLI.md)
+## [`naif` command line interface tools](naif.md)
 
-- [`naif`](CLI.md#naif) 
-- [`naif init`](CLI.md#naif-init) 
-- [`naif generate`](CLI.md#naif-generate) 
-- [`naif show`](CLI.md#naif-show) 
-- [`naif shell`](CLI.md#naif-shell) 
-- [`naif telegram`](CLI.md#naif-telegram)
+- [`naif`](naif.md#naif) 
+- [`naif init`](naif.md#naif-init) 
+- [`naif generate`](naif.md#naif-generate) 
+- [`naif show`](naif.md#naif-show) 
+- [`naif shell`](naif.md#naif-shell) 
+- [`naif telegram`](naif.md#naif-telegram)
 
 
 ## [Discussion](discussion.md)

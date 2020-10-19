@@ -1,6 +1,6 @@
 {
   "name": "naifjs",
-  "version": "0.46.6",
+  "version": "0.46.7",
   "description": "NaifJs, simple state-machine based dialog manager",
   "main": "index.js",
   "repository": {
@@ -38,6 +38,9 @@
   },
   "devDependencies": {},
   "keywords": [
+    "NaifJs",
+    "naif",
+    "dialog system",
     "dialog manager",
     "state-machine based, task-oriented dialog engine",
     "nodejs framework",

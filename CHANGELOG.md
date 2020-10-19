@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file. 
 
-## Version 0.46.6
+## Version 0.46.7
+- documentation update
+- naif init updated: created a basic generic main template
+
+## Version 0.46.6 - first public version
 - added documentation doc/index.md 
 - moved request logic from lib/engine.js to lib/request.js 
 - added `naif init`
@@ -113,7 +117,7 @@ All notable changes to this project will be documented in this file.
  added script directory, containing scripts to run examples.
 
 ## Version 0.28.5 
-- public initial commit.
+- temporary public initial commit.
 
 ---
 

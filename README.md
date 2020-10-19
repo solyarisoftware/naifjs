@@ -12,7 +12,6 @@ The package consists in:
 
 Naifjs is based on a specific conceptual model and a domain specific language (DSL) I conceived,
 implementing multi-turn contextual dialogues as "state machines". 
-
 Following paragraph introduce main concepts and naming conventions:
 
 - Dialog system
@@ -32,6 +31,7 @@ Following paragraph introduce main concepts and naming conventions:
   - [Dialog application](doc/concepts.md#dialog-application)
   - [Sessions](doc/sessions.md)
 
+The full documentation is available [here](doc/index.md).
 
 
 ## Installation
@@ -65,37 +65,24 @@ See:
 - [Workflow](doc/workflow.md) design/development phases 
 
 
-### [`naif` command line interface tools](doc/CLI.md)
+### [Command line micro-framework](doc/naif.md)
 
-- [`naif`](doc/CLI.md#naif): is the main command line program 
-- [`naif init`](doc/CLI.md#naif-init): initializes project directory 
-- [`naif generate`](doc/CLI.md#naif-generate): generate the code skeleton of a dialog unit 
-- [`naif show`](doc/CLI.md#naif-show): for a given project, lists all dialog units and relative states 
-- [`naif shell`](doc/CLI.md#naif-shell): test a dialog unit using the command line interface 
-- [`naif telegram`](doc/CLI.md#naif-telegram): test a dialog unit, setting up on the fly a telegram bot for the purpose
+- [`naif`](doc/naif.md) is the main command line program 
+- [`naif init`](doc/naif-init.md) initializes project directory 
+- [`naif generate`](doc/naif-generate.md) generate the code skeleton of a dialog unit 
+- [`naif show`](doc/naif-show.md) for a given project, lists all dialog units and relative states 
+- [`naif shell`](doc/naif-shell.md) test a dialog unit using the command line interface 
+- [`naif telegram`](doc/naif-telegram.md) test a dialog unit, setting up on the fly a telegram bot for the purpose
 
 
-## Discussion 
+## Discussion / How to contribute
 
 - [Pros and cons](doc/discussion.md#pros-and-cons)
 - [Food for thought](doc/discussion.md#food-for-thought)
 - [BackStory](doc/discussion.md#backstory)
 - [Acknowledgments](doc/discussion.md#acknowledgments)
-
-
-## How to contribute
-
-Please feel free to contact me for any proposal/discussion. 
-There are many areas of improvement!
-
 - [How to contribute](doc/contributing.md).<br>
 - [To do](doc/todo.md)
-
-
-## Caveat
-
-Currently the project is just a proof of concept. Not ready for production.
-<br>The software made is just a prototype in alpha stage. 
 
 
 ## License 
