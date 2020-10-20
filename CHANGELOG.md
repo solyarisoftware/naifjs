@@ -2,8 +2,9 @@
 
 All notable changes to this project will be documented in this file. 
 
-## Version 0.46.7
+## Version 0.46.8
 - documentation update
+- log.js udpated
 - naif init updated: created a basic generic main template
 
 ## Version 0.46.6 - first public version

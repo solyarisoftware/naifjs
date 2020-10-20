@@ -3,16 +3,20 @@
 NaifJs is a simple state-machine based (task-oriented) 
 dialog manager micro-framework for nodejs developers.
 
-The package consists in: 
-- A run-time dialog engine as a library to be embedded in production conversational apps 
-- A micro-framework to create and test dialogues in dev environment (`naif` command line program)
+The project consists in: 
+- A run-time dialog manager, 
+  as a module to be embedded as part of a container dialog system
+- A micro-framework development environment 
+  (`naif` command line program) to create and quickly test dialogues.
 
 
 ## [Concepts](doc/concepts.md)
 
 Naifjs is based on a specific conceptual model and a domain specific language (DSL) I conceived,
-implementing multi-turn contextual dialogues as "state machines". 
-Following paragraph introduce main concepts and naming conventions:
+implementing multi-turn contextual dialogues as "state machines", graphs of internal states. 
+
+Following paragraph introduces main concepts and naming conventions.
+I define what is a dialog system, a dialog manager, a single dialog unit, the end multi-dialog application:
 
 - Dialog system
   - [Stateful multi-turn dialogues](doc/concepts.md#introduction--stateful-multi-turn-dialogues)
@@ -51,7 +55,7 @@ The package contains command line interface program `naif`, so you must install 
   $ cd naifjs && npm link
   ``` 
 
-## Application Programming interface and command line tools 
+## Application Programming interface and command line micro-framework 
 
 
 ### [API library](doc/API.md)
@@ -66,6 +70,9 @@ See:
 
 
 ### [Command line micro-framework](doc/naif.md)
+
+The NaifJs API are foundation for a micro-framework development environment 
+(the `naif` command line program) to create the end application, generate dialog units skeleton code and quickly test dialogues:
 
 - [`naif`](doc/naif.md) is the main command line program 
 - [`naif init`](doc/naif-init.md) initializes project directory 
