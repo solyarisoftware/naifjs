@@ -1,36 +1,39 @@
 # Dialog application
 
-In NaifJs, a *dialogue application*, or *project* is a set of dialogue units files, 
-currently contained in a single specified directory, implementing all workflows of a specific application.
+In NaifJs, a *dialogue application*, or *project* is made by: 
+- a main program containing the invocation logic of *dialog units*.
+- a set of dialogue units files, 
+  currently contained in a single specified directory, 
+  implementing all workflows of a specific application. 
 
-At run time all dialogue files of the directory are loaded into the NaifJs engine, 
-with DSL function `up`:
+At run time all dialog files of the directory are loaded into the NaifJs engine, 
+through function `up`:
 
 ```javascript
-// myApplicationMain.js
+// index.js
 const naif = require('naifjs')
-const DIALOGS_DIRECTORY = './myApplicationDialogues'
+const DIALOGS_DIRECTORY = './units'
 naif.up(DIALOGS_DIRECTORY, responseCallback)
 naif.start('firstUnit.start')
 ```
 
-The application caller invoke the node `start` of dialogue unit `firstUnit.js`. 
+The application main program invokes the node `start` of dialog unit `firstUnit.naif.js`. 
 Afterward the user will traverses the state machine graph, 
-maybe passing from dialogue unit `firstUnit.js` to dialogue unit `secondUnit.js`.
+maybe passing from dialogue unit `firstUnit.naif.js` to dialogue unit `secondUnit.naif.js`.
 
 ```
 path/to/myApplication
-├── myApplicationMain.js 
-└── myApplicationDialogues 
-  ├── firstUnit.js
-  └─── secondUnit.js
+├── index.js 
+└── units 
+  ├── firstUnit.naif.js
+  └─── secondUnit.naif.js
 ```
 
 > In general, an application could be considered as a container of one or multiple dialogue units (micro-skills),
 > each implementing a single self-consistent workflow.
 
 
-## An application example (Telegram Bot) 
+## A minimal application example (Telegram Bot) 
 
 The example here below implement a simple Telegram chatbot that invoke the dialogue 'greetings', 
 when the user say the *activation sentence*: `greetings`. 
@@ -80,7 +83,7 @@ process.on('SIGTERM', naif.down())
 
 NaifJs interact with user receiving and sending messages. 
 The platform is agnostic regarding media contents in `request` and `response` messages. 
-All details [here](requestresponse.md).
+> 👉 All details [here](requestresponse.md).
 
 
 ## [Sessions](sessions.md)
@@ -89,7 +92,7 @@ NaifJs is a multi-user dialogue manager.
 
 Even if running as an embedded library, the engine can be used as a "server" 
 that manage dialogues by many *user ids*, in parallel. 
-More details [here](sessions.md).
+> 👉 More details [here](sessions.md).
 
 
 ## [Project examples](../examples)

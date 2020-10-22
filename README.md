@@ -4,6 +4,7 @@ NaifJs is a simple state-machine based (task-oriented)
 dialog manager micro-framework for nodejs developers.
 
 The project consists in: 
+
 - A run-time dialog manager, 
   as a module to be embedded as part of a container dialog system
 - A micro-framework development environment 
@@ -55,7 +56,7 @@ The package contains command line interface program `naif`, so you must install 
   $ cd naifjs && npm link
   ``` 
 
-## Application Programming interface and command line micro-framework 
+## Application Programming interface and command line tools
 
 
 ### [API library](doc/API.md)
@@ -69,7 +70,7 @@ See:
 - [Workflow](doc/workflow.md) design/development phases 
 
 
-### [Command line micro-framework](doc/naif.md)
+### [Command line tools](doc/naif.md)
 
 The NaifJs API are foundation for a micro-framework development environment 
 (the `naif` command line program) to create the end application, generate dialog units skeleton code and quickly test dialogues:
@@ -88,7 +89,7 @@ The NaifJs API are foundation for a micro-framework development environment
 - [Food for thought](doc/discussion.md#food-for-thought)
 - [BackStory](doc/discussion.md#backstory)
 - [Acknowledgments](doc/discussion.md#acknowledgments)
-- [How to contribute](doc/contributing.md).<br>
+- [How to contribute](doc/contributing.md)
 - [To do](doc/todo.md)
 
 

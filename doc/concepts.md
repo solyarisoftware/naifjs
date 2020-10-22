@@ -87,10 +87,9 @@ The main software components are:
 
 - The dialog selection/activation 
  
-  NaifJs is built on the idea that user interacts with the dialog system activating, one at a time, a dialog flow, 
-  I call *dialog unit* (or *dialog thread*), each one implemented as a dedicated state machine. 
-
-  >  A dialog unit could be considered as a micro-skill or workflow to accomplish some application task.
+  NaifJs is built on the idea that user interacts with the dialog system activating, one at a time, 
+  a specific task-oriented or topic-oriented conversational workflow,
+  that I call *dialog unit*, each one implemented as a dedicated state machine. 
 
   There are two distinct kind of events that trigger a new dialog: 
 
@@ -114,18 +113,20 @@ The main software components are:
   is in charge to schedule a track the internal state of a dialog 
   and at least send outbound responses to the channel adapter.
  
-- The application dialogues
+- The conversational application (project)
 
-  An application (or project) is made by a set of (standalone or interconnected) *dialog units*,
-  "self-consistent" finite state machines (FSM), 
-  single *units* of conversational logic that accomplish some specific application workflows.
-
+  An application (or project) is made by:
+  - a main program containing the invocation logic of *dialog units*.
+  - a set of (standalone or interconnected) dialog units,
+    "self-consistent" finite state machines (FSM), single *units* of conversational logic 
+    that accomplish some specific application workflows,
+    micro-skills that accomplish specific tasks.
  
 ## Dialog as a state-machine
 
 NaifJs is a dialog manager that implements dialog management 
 modeling a conversation as a finite state machine 
-([FSM](https://en.wikipedia.org/wiki/Finite-state_machine)).
+([FSM](https://en.wikipedia.org/wiki/Finite-state_machine)), 
 
 A conversation in NaifJs can be thought of as traversing the state machine's nodes, 
 to be considered as a graph of *states*.
@@ -137,13 +138,13 @@ a string label identifying both the state machine (the dialog unit)
 and the specific state inside the dialog unit):
 
 ```
-const stateid = 'myDialogueUnit.myState'
+const stateid = 'myDialogUnit.myState'
 ``` 
 
 Where:
 
-- `myDialogueUnit` is the name of the state machine 
-  (corresponding to a unique dialogue unit file: `myDialogueUnit.js`)
+- `myDialogUnit` is the name of the state machine 
+  (corresponding to a unique dialogue unit file: `myDialogUnit.js`)
 - `myState` is the name of the javascript function handler `myState()`
 
 ### Input and output states
@@ -166,7 +167,7 @@ In each state machine there are two different kind of nodes:
   It's triggered with `exec('myDialogueUnit.myOutputputState')` DSL.
 
 
-### Rule-based state transitions
+### "Rule-based" state transitions
 
 Transitions between states take places for two kind of events:
 
@@ -175,9 +176,7 @@ Transitions between states take places for two kind of events:
   These are the `start` of the state-machine and any successive `request`. 
  
   A dialogue is initially activated by a caller program (with `start` function) 
-  that activate the initial state. 
-
-  Usually (but not perforce) the first node is an output state.
+  that activate the initial state (an output state, in current implementation).
   The node performs some kind of logic (L, in figure 2), usually (but non perforce) 
   feedback a `response` to the user and can store contextual (shared) memory variables (M). 
   The response to the user is any kind of message 
@@ -211,7 +210,7 @@ The incoming user request event (the user utterance as text), run a state handle
 
 ```javascript
 // dialog manager set a specific state-machine state
-naif.start('dialogueUnit.dialogueState')
+naif.start('myDialogUnit.myState')
 
 // when user talk to the agent:
 naif.request(user, utterance)
@@ -236,7 +235,7 @@ a successive output state (using `exec` API) or might not change
 based on a dialog flow programmed by the designer. 
 
 The dialog flow finally ends, when developer terminate the conversation, 
-terminating the state machine (with `end` API).
+exiting the state machine (with `end` API).
 
 | ![state machine figure 3](img/state-machine-1-new.png) |
 |:--:|
@@ -247,16 +246,16 @@ terminating the state machine (with `end` API).
 
 To complete a specific task (a workflow), 
 a multi-turn conversation is implemented as a network of micro-dialogues, 
-called *dialogue units*, each containing a graph of nodes that completes a *contextual* 
+called *dialog units*, each containing a graph of nodes that completes a *contextual* 
 (related to in a specific domain and task) conversation workflow. 
 
 A dialog unit is a finite state machine (FSM), 
 a single *unit* of conversational logic allowing accomplish any specific application workflow.
 
-From developer point of view, each dialogue unit is a standalone file, 
-exporting a module that implement a single state machine, or micro-dialogue, 
-that has an entry point (the initial state) and one or more ends.
-
+> 👉 From coder point of view, each dialog unit is a standalone file, 
+> exporting a module that implement a single state machine, or micro-dialogue, 
+> that has an entry point (the initial state) and one or more ends.
+>
 > These dialog units modules could be concatenated each other, resulting a complex dialogue. 
 > Each dialogue unit can receive input parameters, following a sort of functional programming model. 
 
@@ -269,7 +268,8 @@ that has an entry point (the initial state) and one or more ends.
 
 Each dialogue unit has a *short-term memory* made by persistent variables 
 with local scope to the unit itself, but shared among all dialog units part of the same application.
-👉 More details in [variables](variables.md) and [sessions](session.md) docs.
+
+> 👉 More details in [variables](variables.md) and [sessions](session.md) docs.
 
 
 ### Writing a dialogue with a javascript DSL
@@ -289,18 +289,19 @@ NaifJs is a backend dialog manager engine, multi-user, channel agnostic, message
 
 The dialog engine interacts with the external system, receiving and sending messages. 
 The platform is pretty agnostic regarding media contents in `request` and `response` messages. 
-👉 Read more [here](requestresponse.md).
+
+> 👉 Read more [here](requestresponse.md).
 
 
-### Simple example of a dialog unit
+### A simple example of a dialog unit
 
-Suppose we want to implement a simple dialogue unit 
+Suppose we want to implement a simple dialog unit 
 that ask the user his name, and terminates. 
 
-As soon the dialogue is activated (with `naif.start('getUserName.askName')`), 
+As soon the dialog is activated (with `naif.start('getUserName.askName')`), 
 the output state `askName` handler is triggered. 
-The output state simply prompt the user and goto the input state with `next(getName)`.
-Note that `say` and `ask` are specialized versions of generic `response` DSL.
+The state simply prompt the user and goto the input state with `next(getName)`.
+Note that `say` and `ask` are specialized versions of generic `response` function.
 
 > The example dialogue is a 1-state, 
 > because it contains just a single input state handler (`getname`). 
@@ -346,8 +347,14 @@ module.exports = getUserName
 
 ## [Dialog application](application.md)
 
-In NaifJs, a *dialogue application*, or *project* is a set of dialogue units files, 
-currently contained in a single specified directory, implementing all workflows of a specific application. See:
+An application (or project) is made by:
+
+- a main program containing the invocation logic of *dialog units*.
+- a set of dialogue units files, 
+  currently contained in a single specified directory, 
+  implementing all workflows of a specific application. 
+
+  See:
 
 - 👉 [An application example (Telegram Bot)](application.md#an-application-example--Telegram-Bot-)
 - 👉 [Sessions](sessions.md)

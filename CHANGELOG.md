@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file. 
 
-## Version 0.46.8
+## Version 0.46.9
 - documentation update
-- log.js udpated
-- naif init updated: created a basic generic main template
+- log.js udpated and renamed logdialog.js
+- naif init updated: basic generic main template improved
 
 ## Version 0.46.6 - first public version
 - added documentation doc/index.md 

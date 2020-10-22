@@ -12,7 +12,7 @@ const variables = require('./lib/variables')
 const patternsMatchRegexp = require('./lib/patternsMatchRegexp')
 const banner = require('./bin/lib/info')
 const buildTags = require('./lib/buildTags')
-const log = require('./lib/log')
+const logdialog = require('./lib/logdialog')
 
 // https://stackoverflow.com/questions/39121695/merge-two-objects-with-es6
 const allFunctions = {
@@ -25,7 +25,7 @@ const allFunctions = {
   ...patternsMatchRegexp,
   ...banner,
   ...buildTags,
-  log
+  logdialog
 }
 
 module.exports = allFunctions

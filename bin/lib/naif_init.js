@@ -2,6 +2,7 @@ const fs = require('fs')
 const { resolve, basename } = require('path')
 const { version, author } = require('../../package')
 const { banner } = require('./info')
+//const COLOR = require('../../lib/color') 
 
 const configDirectoryName = 'config'
 const dialogunitsDirectoryName = 'dialogunits'
@@ -9,16 +10,26 @@ const sessionsDirectoryName = 'sessions'
 const libDirectoryName = 'lib'
 const logsDirectoryName = 'logs'
 
+const DEFAULT_LOG_CONFIG = {
+  timestampFormat: 'YY.MM.DD HH.mm.ss',
+  substituteNewline: false,
+  color: false
+}  
+
+const DIALOGLOG_CONFIG_FILE = JSON.stringify(DEFAULT_LOG_CONFIG, null, 2) + '\n'
+const SESSION_FILE = '{}\n'
+
 
 function projectReadme(projectName) {
   return (
-    `# Project ${ projectName ? projectName : '' }\n` +
+    `# Project ${projectName}\n` +
     '\n' +
     'Directory structure:\n' +
     '  README.md\n' +
-    '  ├── index.js\n' +
+    `  ├── ${projectName}.js\n` +
     `  ├── ${configDirectoryName}\n` +
-    '  │   └── README.md\n' +
+    '  │   ├── README.md\n' +
+    '  │   └── log.json\n' +
     `  ├── ${dialogunitsDirectoryName}\n` +
     '  │   └── README.md\n' +
     `  ├── ${libDirectoryName}\n` +
@@ -162,8 +173,11 @@ function naifinit(args) {
 
   checkArgs(args)
 
-  const projectDirectory = args.dir ? resolve(args.dir) : resolve(process.cwd())
+  const projectDirectory = resolve(args.dir)
   const projectName = basename(projectDirectory)
+
+  //console.log(projectDirectory)
+  //console.log(projectName)
 
   console.log()
   console.log( logo() )
@@ -175,34 +189,39 @@ function naifinit(args) {
   const helpersSubDirectory = `${projectDirectory}/${libDirectoryName}`
   const logsSubDirectory = `${projectDirectory}/${logsDirectoryName}`
 
+  if (args.dir === '.') {
+    console.error('ERROR: project directory already exist\n')
+    process.exit()
+  }
+
   // create directory, just if directory doesn't exist
   if ( fs.existsSync(projectDirectory) ) {
     console.error(`ERROR: project directory: ${projectDirectory} already exist\n`)
     process.exit()
   }
-  else {
-    // create project directory and the root README file
-    fs.mkdirSync(projectDirectory)
-    fs.writeFileSync(projectDirectory + '/README.md', projectReadme(projectName) )
-    fs.writeFileSync(projectDirectory + '/index.js', genericAdapterTemplate() )
 
-    // create subdirectories and README files
-    fs.mkdirSync(configSubDirectory)
-    fs.writeFileSync(configSubDirectory + '/README.md', configReadme() )
-    
-    fs.mkdirSync(dialogUnitsSubDirectory)
-    fs.writeFileSync(dialogUnitsSubDirectory + '/README.md', dialogUnitsReadme() )
-    
-    fs.mkdirSync(sessionsSubDirectory)
-    fs.writeFileSync(sessionsSubDirectory + '/README.md', sessionsReadme() )
-    fs.writeFileSync(sessionsSubDirectory + '/sessions.json', '{}' )
-    
-    fs.mkdirSync(helpersSubDirectory)
-    fs.writeFileSync(helpersSubDirectory + '/README.md', helpersReadme() )
-    
-    fs.mkdirSync(logsSubDirectory)
-    fs.writeFileSync(logsSubDirectory + '/README.md', logsReadme() )
-  }  
+  // create project directory and the root README file
+  fs.mkdirSync(projectDirectory)
+  fs.writeFileSync(projectDirectory + '/README.md', projectReadme(projectName) )
+  fs.writeFileSync(projectDirectory + '/index.js', genericAdapterTemplate() )
+
+  // create subdirectories and README files
+  fs.mkdirSync(configSubDirectory)
+  fs.writeFileSync(configSubDirectory + '/README.md', configReadme() )
+  fs.writeFileSync(configSubDirectory + '/logdialog.json', DIALOGLOG_CONFIG_FILE  )
+  
+  fs.mkdirSync(dialogUnitsSubDirectory)
+  fs.writeFileSync(dialogUnitsSubDirectory + '/README.md', dialogUnitsReadme() )
+  
+  fs.mkdirSync(sessionsSubDirectory)
+  fs.writeFileSync(sessionsSubDirectory + '/README.md', sessionsReadme() )
+  fs.writeFileSync(sessionsSubDirectory + '/sessions.json', SESSION_FILE )
+  
+  fs.mkdirSync(helpersSubDirectory)
+  fs.writeFileSync(helpersSubDirectory + '/README.md', helpersReadme() )
+  
+  fs.mkdirSync(logsSubDirectory)
+  fs.writeFileSync(logsSubDirectory + '/README.md', logsReadme() )
 
   console.log( 'New NaifJs application has been initialized:\n' + projectDirectory )
   console.log( `${projectDirectory}/index.js is a generic adapter template` )

@@ -7,7 +7,7 @@ const naif = require('../../')
 const { version, author } = require('../../package')
 const { banner } = require('./info')
 const { sendMessage } = require('../../lib/telegram/sendOrderedMessages')
-const log = require('../../lib/log')
+const log = require('../../lib/logdialog')
 
 function logo() {
   return (
@@ -125,7 +125,7 @@ function naiftgbot(args) {
   if (logfileName)
     log.open(logfileName)
 
-  naif.up( args.dir, response, end, args.sessionsfile, false )
+  naif.up( args.dir, response, args.sessionsfile, end, false )
 
   // start the dialog for each chatid
   if (args.chatids) {

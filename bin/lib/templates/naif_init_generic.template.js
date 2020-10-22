@@ -1,8 +1,10 @@
-//
-// generic NaifJs main application template
-//
+/**
+ * index.js
+ * generic NaifJs main application template
+ *
+ */
 const naif = require('naifjs')
-const log = require('naif').log
+const logdialog = require('naif').logdialog
 
 const startStateId = 'unitName.start'
 const unitsDirectory = './units/' 
@@ -22,14 +24,9 @@ function response(sessionid, data ) {
   console.log( data.text )
 
   if (logfileName)
-    log.response(sessionid, `[${data.stateid}] ${data.text}`)
+    logdialog.response(sessionid, `[${data.stateid}] ${data.text}`)
 }
 
-
-/**
- * end the application 
- */ 
-function end() {}
 
 /**
  * shutdown naif engine and exit from current process.
@@ -40,7 +37,7 @@ async function exit() {
   await naif.down()
 
   if (logfileName)
-    log.close()
+    logdialog.close()
 
   // exit from current process
   process.exit(0)
@@ -52,17 +49,17 @@ function main() {
 
   // open dialogs log file
   if (logfileName)
-    log.open(logfileName)
+    logdialog.open(logfileName)
 
   // NaifJs dialog engine setup
-  naif.up( unitsDirectory, response, end, sessionsfile, false )
+  naif.up( unitsDirectory, response, sessionsfile, ()=>{}, false )
 
   naif.start(sessionid, startStateId)
 
     // user texted 
     const sentence = 'bla bla bla'
     if (logfileName)
-      log.request(sessionid, `[text] ${sentence}`)
+      logdialog.request(sessionid, `[text] ${sentence}`)
 
     naif.request(sessionid, {text: sentence, speech: false})
 

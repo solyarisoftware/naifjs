@@ -2,7 +2,7 @@ const os = require('os')
 const readline = require('readline')
 
 const { up, down, start, request, banner, getCurrentUnitState } = require('../../')
-const log = require('../../lib/log')
+const log = require('../../lib/logdialog')
 const { dialogsAndStates } = require('../../lib/unitsLoader')
 const { version, author } = require('../../package.json')
 
@@ -312,7 +312,7 @@ function naifshell(args) {
 
   // NaifJs dialog engine setup
   // load units from specified folder
-  up( UnitsDirectory, response, end, args.sessionsfile, false )
+  up( UnitsDirectory, response, args.sessionsfile, end, false )
 
   if ( !silent ) {
     console.log('\nDialog Units Directory\n' + UnitsDirectory)

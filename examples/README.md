@@ -23,6 +23,13 @@ examples/
 │   └── shell
 ```
 
+To run the example: 
+
+```
+$ examples/getUserName/shell
+```
+
+
 ## 2. [examples/getUserNameTimeout](getUserNameTimeout)
 
 - Hello World with timeout
@@ -37,6 +44,13 @@ examples/
 │   ├── show
 │   └── shell
 ```
+
+To run the example: 
+
+```
+$ examples/getUserNameTimeout/shell
+```
+
 
 ## 3. [examples/story_it](story_it)
 
@@ -61,6 +75,12 @@ examples/
     └── UNITS.script
 ```
 
+To run the example: 
+
+```
+$ examples/story_it/shell
+```
+
 ## 4. [examples/story_en](story_en)
 
 - English version of previous app.
@@ -75,6 +95,12 @@ examples/
 │   ├── secondUnit.js
 │   ├── show
 │   └── shell
+```
+
+To run the example: 
+
+```
+$ examples/story_en/shell
 ```
 
 ## 5. [examples/textOrSpeech](textOrSpeech)
@@ -92,8 +118,16 @@ examples/
 │   └── shell
 ```
 
+To run the example: 
+
+```
+$ examples/textOrSpeech/shell
+```
+
 
 ## 6. [examples/Notify](notify)
+
+ ⚠️  To be completed.
 
 - TODO notify user asynchronously 
 - Show how to push user with unsolicited messages/dialogues 
@@ -108,6 +142,8 @@ examples/
 
 
 ## 7. [examples/promemoria](promemoria)
+
+ ⚠️  To be completed.
 
 - TODO Just a draft script that mimic Google Home reminder dialog.
 
