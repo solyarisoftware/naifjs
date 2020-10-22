@@ -17,16 +17,16 @@ naif.up(DIALOGS_DIRECTORY, responseCallback)
 naif.start('firstUnit.start')
 ```
 
-The application main program invokes the node `start` of dialog unit `firstUnit.naif.js`. 
+The application main program invokes the node `start` of dialog unit `firstUnit.js`. 
 Afterward the user will traverses the state machine graph, 
-maybe passing from dialogue unit `firstUnit.naif.js` to dialogue unit `secondUnit.naif.js`.
+maybe passing from dialogue unit `firstUnit.js` to dialogue unit `secondUnit.js`.
 
 ```
 path/to/myApplication
 ├── index.js 
 └── units 
-  ├── firstUnit.naif.js
-  └─── secondUnit.naif.js
+  ├── firstUnit.js
+  └─── secondUnit.js
 ```
 
 > In general, an application could be considered as a container of one or multiple dialogue units (micro-skills),

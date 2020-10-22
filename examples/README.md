@@ -23,7 +23,7 @@ examples/
 │   └── shell
 ```
 
-To run the example: 
+To test the dialog unit: 
 
 ```
 $ examples/getUserName/shell
@@ -45,7 +45,7 @@ examples/
 │   └── shell
 ```
 
-To run the example: 
+To test the dialog unit: 
 
 ```
 $ examples/getUserNameTimeout/shell
@@ -75,7 +75,7 @@ examples/
     └── UNITS.script
 ```
 
-To run the example: 
+To test the dialog unit: 
 
 ```
 $ examples/story_it/shell
@@ -97,7 +97,7 @@ examples/
 │   └── shell
 ```
 
-To run the example: 
+To test the dialog unit: 
 
 ```
 $ examples/story_en/shell
@@ -118,7 +118,7 @@ examples/
 │   └── shell
 ```
 
-To run the example: 
+To test the dialog unit: 
 
 ```
 $ examples/textOrSpeech/shell

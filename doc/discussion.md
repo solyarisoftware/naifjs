@@ -112,11 +112,6 @@ In September 2020 I decided to opensource my software with a MIT license, allowi
   [node-telegram-bot-api](https://github.com/yagop/node-telegram-bot-api) I used also in this project.
 
 
-## Caveat
-
-Currently the project is just a proof of concept. Not ready for production.
-<br>The software made is just a prototype, in alpha stage. 
-
 ---
 
 [top](#) | [home](../README.md) | [index](index.md)

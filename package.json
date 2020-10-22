@@ -1,6 +1,6 @@
 {
   "name": "naifjs",
-  "version": "0.46.9",
+  "version": "0.46.10",
   "description": "NaifJs, simple state-machine based dialog manager",
   "main": "index.js",
   "repository": {

@@ -36,6 +36,8 @@ I define what is a dialog system, a dialog manager, a single dialog unit, the en
   - [Dialog application](doc/concepts.md#dialog-application)
   - [Sessions](doc/sessions.md)
 
+## Documentation
+
 The full documentation is available [here](doc/index.md).
 
 
@@ -92,6 +94,11 @@ The NaifJs API are foundation for a micro-framework development environment
 - [How to contribute](doc/contributing.md)
 - [To do](doc/todo.md)
 
+
+## Status
+
+Currently the project is just a proof of concept, not ready for production.
+The software made is just a prototype, in alpha stage. 
 
 ## License 
 
