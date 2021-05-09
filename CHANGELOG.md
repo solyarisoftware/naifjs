@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. 
 
+## version 0.46.11
+
+- security update: https://github.com/solyarisoftware/naifjs/security/dependabot/package-lock.json/lodash/open
+
 ## Version 0.46.9
 - documentation update
 - log.js udpated and renamed logdialog.js
